@@ -35,8 +35,18 @@
         const editor = document.getElementById('editor');
         const output = document.getElementById('output');
 
+        // Load saved content from local storage
+        const savedContent = localStorage.getItem('editorContent');
+        if (savedContent) {
+            editor.value = savedContent;
+            output.innerHTML = savedContent;
+        }
+
         editor.addEventListener('input', function() {
-            output.innerHTML = editor.value;
+            const content = editor.value;
+            output.innerHTML = content;
+            // Save content to local storage
+            localStorage.setItem('editorContent', content);
         });
     </script>
 </body>
